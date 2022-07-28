@@ -1,0 +1,27 @@
+I=imread('C:\Users\Baljeet Singh\Desktop\lena.jpg');
+%figure, imshow(I);
+J=rgb2gray(I);
+[wid,ht]=size(J);
+figure, imshow(J);
+M=zeros(wid,ht);
+for i=1:wid-2
+    for j=1:ht-2
+        maxim=0;x=0;y=0;
+        for k=i:i+2
+            for l=j:j+2
+                if J(k,l)>maxim
+                    maxim=J(k,l);
+                    x=k;y=l;
+                end;
+            end;
+        end;
+        for k=i:i+2
+            for l=j:j+2
+                if maxim-J(k,l)>=40
+                    M(k,l)=255;
+                end;
+            end;
+        end;
+    end;
+end;
+figure, imshow(M);

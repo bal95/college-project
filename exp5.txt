@@ -1,0 +1,20 @@
+I=imread('C:\Users\Baljeet Singh\Desktop\lena.jpg');
+J=rgb2gray(I);
+[wid,ht]=size(J);
+figure, imshow(J);
+[Gmag,Gdir]=imgradient(J);
+M=zeros(wid,ht);
+for i=1:wid-2
+    for j=1:ht-2
+        Me=mean2(J(i:i+2,j:j+2));
+        S=std2(J(i:i+2,j:j+2));
+        for k=i:i+2
+            for l=j:j+2
+                if Gmag(k,l)>=Me+S
+                    M(k,l)=255;
+                end;
+            end;
+        end;
+    end;
+end;
+figure, imshow(M);
